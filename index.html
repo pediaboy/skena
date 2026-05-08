@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PediaBoy | Jasa Website</title>
+    <title>PediaBoy | Premium Web Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
         body {
-            background-color: #020617;
-            color: #f8fafc;
+            background-color: #0b0710;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             overflow-x: hidden;
@@ -24,45 +27,98 @@
         .mobile-container {
             width: 100%;
             max-width: 480px;
-            background-color: #0f172a;
+            background-color: #0b0710;
             min-height: 100vh;
             position: relative;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            box-shadow: 0 0 40px rgba(0,0,0,0.9);
             overflow-x: hidden;
+            z-index: 1;
+        }
+        .glow-bg-top {
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(196, 30, 130, 0.4) 0%, rgba(11, 7, 16, 0) 70%);
+            filter: blur(50px);
+            z-index: -1;
+            pointer-events: none;
+        }
+        .glow-bg-mid {
+            position: absolute;
+            top: 40%;
+            right: -30%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(196, 30, 130, 0.25) 0%, rgba(11, 7, 16, 0) 70%);
+            filter: blur(60px);
+            z-index: -1;
+            pointer-events: none;
         }
         header {
             text-align: center;
-            padding: 50px 20px 30px;
-            background: linear-gradient(135deg, #1e293b, #020617);
-            border-bottom: 1px solid #334155;
-            border-radius: 0 0 20px 20px;
+            padding: 60px 20px 40px;
+            position: relative;
         }
-        h1 {
-            font-size: 36px;
-            color: #38bdf8;
-            margin-bottom: 10px;
+        .subtitle-top {
+            font-size: 12px;
+            color: #a09eb0;
             text-transform: uppercase;
             letter-spacing: 2px;
-        }
-        .dev-badge {
-            display: inline-block;
-            padding: 6px 18px;
-            background: #38bdf8;
-            color: #020617;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
             margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .subtitle-top::before, .subtitle-top::after {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background-color: #c41e82;
+        }
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            letter-spacing: -1px;
         }
         .header-desc {
-            color: #94a3b8;
+            color: #a09eb0;
             font-size: 15px;
             line-height: 1.6;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(90deg, #d31a8a, #a8126b);
+            color: #ffffff;
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: auto;
+        }
+        .btn-primary:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 20px rgba(211, 26, 138, 0.6);
         }
         .section {
-            padding: 40px 20px;
-            border-bottom: 1px solid #1e293b;
+            padding: 50px 20px;
+            position: relative;
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -72,108 +128,109 @@
             transform: translateY(0);
         }
         h2 {
-            font-size: 24px;
-            color: #f8fafc;
-            margin-bottom: 25px;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 40px;
             text-align: center;
-            border-bottom: 2px solid #38bdf8;
-            display: inline-block;
-            padding-bottom: 5px;
-            left: 50%;
-            position: relative;
-            transform: translateX(-50%);
+            letter-spacing: -0.5px;
+        }
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
         }
         .card {
-            background: #1e293b;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(211, 26, 138, 0.2);
             border-radius: 16px;
-            padding: 25px;
-            margin-bottom: 25px;
-            border: 1px solid #334155;
-            transition: transform 0.2s, border-color 0.3s;
+            padding: 30px 25px;
             position: relative;
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s, border-color 0.3s;
             overflow: hidden;
         }
         .card:active {
-            transform: scale(0.96);
-            border-color: #38bdf8;
+            transform: scale(0.98);
+            border-color: #d31a8a;
         }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: #38bdf8;
+        .card-icon {
+            width: 30px;
+            height: 30px;
+            background: rgba(211, 26, 138, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d31a8a;
+            font-size: 12px;
+            margin-bottom: 20px;
         }
         .price-title {
-            font-size: 22px;
-            color: #f8fafc;
-            font-weight: bold;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
         }
         .price-amount {
-            color: #38bdf8;
+            color: #d31a8a;
             font-size: 20px;
         }
         .card p {
             font-size: 14px;
-            color: #94a3b8;
-            margin-bottom: 15px;
-            line-height: 1.5;
+            color: #a09eb0;
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
         .card ul {
             list-style: none;
-            margin: 0 0 20px 0;
+            margin: 0 0 25px 0;
         }
         .card ul li {
             font-size: 14px;
-            color: #cbd5e1;
-            margin-bottom: 10px;
+            color: #d1d0da;
+            margin-bottom: 12px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 10px;
+            line-height: 1.5;
         }
         .card ul li i {
-            color: #38bdf8;
-            font-size: 14px;
+            color: #d31a8a;
+            font-size: 12px;
+            margin-top: 4px;
         }
-        .btn {
-            display: block;
+        .card.highlight {
+            background: rgba(211, 26, 138, 0.08);
+            border: 1px solid rgba(211, 26, 138, 0.5);
+        }
+        .btn-order-card {
             width: 100%;
-            padding: 16px;
-            border-radius: 12px;
-            font-weight: bold;
-            border: none;
-            font-size: 16px;
+            padding: 14px;
+            background: transparent;
+            border: 1px solid #d31a8a;
+            color: #ffffff;
+            border-radius: 20px;
+            font-weight: 600;
             cursor: pointer;
-            text-align: center;
-            text-decoration: none;
             transition: all 0.2s;
+            font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
-        .btn-order {
-            background: #38bdf8;
-            color: #020617;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
-        }
-        .btn-order:active {
-            background: #0ea5e9;
-            transform: translateY(2px);
+        .btn-order-card:active {
+            background: #d31a8a;
         }
         .invoice-container {
-            background: #020617;
-            border-radius: 16px;
-            padding: 25px;
-            border: 2px dashed #38bdf8;
-            margin-top: 20px;
+            background: #110c18;
+            border-radius: 20px;
+            padding: 30px 25px;
+            border: 1px dashed #d31a8a;
+            margin-top: 30px;
             display: none;
             opacity: 0;
             transition: opacity 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .invoice-container.show {
             display: block;
@@ -181,62 +238,170 @@
         }
         .inv-header {
             text-align: center;
-            border-bottom: 1px solid #1e293b;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
         }
         .inv-header h3 {
-            color: #38bdf8;
-            font-size: 20px;
-        }
-        .inv-details {
-            margin-bottom: 20px;
+            color: #ffffff;
+            font-size: 18px;
+            letter-spacing: 2px;
+            font-weight: 600;
         }
         .inv-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 15px;
-            color: #cbd5e1;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #a09eb0;
         }
         .inv-row strong {
-            color: #f8fafc;
+            color: #ffffff;
         }
         .inv-total {
-            font-size: 22px;
-            color: #38bdf8;
-            font-weight: bold;
+            font-size: 28px;
+            color: #d31a8a;
+            font-weight: 700;
             text-align: center;
-            margin: 20px 0;
-            padding: 15px;
-            background: #0f172a;
-            border-radius: 8px;
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
         .payment-methods {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         .pay-badge {
-            background: #1e293b;
-            padding: 8px 12px;
-            border-radius: 6px;
+            background: rgba(255,255,255,0.05);
+            padding: 10px 15px;
+            border-radius: 8px;
             font-size: 12px;
-            color: #94a3b8;
-            border: 1px solid #334155;
+            color: #d1d0da;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .btn-confirm {
-            background: #22c55e;
+            width: 100%;
+            background: #25D366;
             color: #ffffff;
+            padding: 16px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         .btn-confirm:active {
-            background: #16a34a;
+            transform: scale(0.96);
         }
-        .social-links {
+        .step-list {
+            position: relative;
+            padding-left: 30px;
+        }
+        .step-list::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, #d31a8a, rgba(211, 26, 138, 0));
+        }
+        .step-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .step-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d31a8a;
+            box-shadow: 0 0 10px #d31a8a;
+        }
+        .step-item h4 {
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .step-item p {
+            font-size: 14px;
+            color: #a09eb0;
+            line-height: 1.6;
+        }
+        .faq-box {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+        }
+        .faq-q {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 10px;
             display: flex;
-            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .faq-q i {
+            color: #d31a8a;
+            margin-top: 3px;
+        }
+        .faq-a {
+            color: #a09eb0;
+            font-size: 14px;
+            line-height: 1.6;
+            padding-left: 26px;
+        }
+        .snk-container {
+            background: rgba(211, 26, 138, 0.05);
+            border-left: 3px solid #d31a8a;
+            padding: 25px;
+            border-radius: 0 16px 16px 0;
+            margin-top: 40px;
+        }
+        .snk-container h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        .snk-list {
+            padding-left: 20px;
+            color: #a09eb0;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .snk-list li {
+            margin-bottom: 12px;
+            position: relative;
+            list-style: none;
+        }
+        .snk-list li::before {
+            content: '•';
+            color: #d31a8a;
+            position: absolute;
+            left: -15px;
+            font-weight: bold;
+        }
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 15px;
         }
         .social-btn {
@@ -244,119 +409,107 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            padding: 16px;
-            border-radius: 12px;
+            padding: 18px;
+            border-radius: 16px;
             color: white;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
+            font-weight: 600;
+            font-size: 15px;
             transition: transform 0.2s;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .social-btn:active {
             transform: scale(0.96);
+            background: rgba(255,255,255,0.08);
         }
-        .wa-bg { background: #25D366; }
-        .ig-bg { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-        .web-bg { background: #334155; }
-        .faq-box {
-            margin-bottom: 20px;
-            background: #1e293b;
-            padding: 20px;
-            border-radius: 12px;
-        }
-        .faq-q {
-            color: #38bdf8;
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-        .faq-a {
-            color: #94a3b8;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        .snk-list {
-            padding-left: 20px;
-            color: #94a3b8;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        .snk-list li {
-            margin-bottom: 10px;
+        .social-btn i {
+            font-size: 20px;
         }
         .footer {
             text-align: center;
-            padding: 30px;
-            background: #020617;
-            color: #475569;
+            padding: 40px 20px;
+            color: #636075;
             font-size: 13px;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
     </style>
 </head>
 <body>
 
 <div class="mobile-container">
+    <div class="glow-bg-top"></div>
+    <div class="glow-bg-mid"></div>
+
     <header>
+        <div class="subtitle-top">Pediaboy Web Services</div>
         <h1>PediaBoy</h1>
-        <div class="dev-badge">Dikembangkan oleh PediaBoy</div>
         <p class="header-desc">Solusi pembuatan website profesional, cepat, dan modern. Kami hadir untuk mengembangkan bisnis digital Anda dalam satu sentuhan.</p>
+        <a href="#pricelist" class="btn-primary">LIHAT LAYANAN <i class="fa-solid fa-arrow-right"></i></a>
     </header>
 
-    <div class="section fade-elem">
+    <div class="section fade-elem" id="pricelist">
         <h2>Pricelist Website</h2>
+        <div class="grid-cards">
+            
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-cube"></i></div>
+                <div class="price-title"><span>Bronze</span> <span class="price-amount">100K</span></div>
+                <p>Landing page simple dan elegan untuk profil bisnis dasar.</p>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> 1 Halaman Utama</li>
+                    <li><i class="fa-solid fa-check"></i> Desain Modern Standard</li>
+                    <li><i class="fa-solid fa-check"></i> Integrasi Tombol Sosmed</li>
+                    <li><i class="fa-solid fa-check"></i> 1x Revisi</li>
+                </ul>
+                <button class="btn-order-card order-trigger" data-paket="Bronze Simple" data-harga="100.000">Pesan Bronze</button>
+            </div>
 
-        <div class="card">
-            <div class="price-title"><span>Bronze</span> <span class="price-amount">100K</span></div>
-            <p>Landing page simple dan elegan untuk profil bisnis dasar.</p>
-            <ul>
-                <li><i class="fa-solid fa-check"></i> 1 Halaman Utama</li>
-                <li><i class="fa-solid fa-check"></i> Desain Modern Standard</li>
-                <li><i class="fa-solid fa-check"></i> Integrasi Tombol Sosmed</li>
-                <li><i class="fa-solid fa-check"></i> 1x Revisi</li>
-            </ul>
-            <button class="btn btn-order order-trigger" data-paket="Bronze Simple" data-harga="100.000">Pesan Bronze</button>
-        </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <div class="price-title"><span>Silver</span> <span class="price-amount">500K</span></div>
+                <p>Website multi-halaman untuk perusahaan atau portofolio lengkap.</p>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Maksimal 5 Halaman</li>
+                    <li><i class="fa-solid fa-check"></i> UI/UX Profesional</li>
+                    <li><i class="fa-solid fa-check"></i> Setup SEO Dasar</li>
+                    <li><i class="fa-solid fa-check"></i> 3x Revisi</li>
+                </ul>
+                <button class="btn-order-card order-trigger" data-paket="Silver Business" data-harga="500.000">Pesan Silver</button>
+            </div>
 
-        <div class="card">
-            <div class="price-title"><span>Silver</span> <span class="price-amount">500K</span></div>
-            <p>Website multi-halaman untuk perusahaan atau portofolio lengkap.</p>
-            <ul>
-                <li><i class="fa-solid fa-check"></i> Maksimal 5 Halaman</li>
-                <li><i class="fa-solid fa-check"></i> UI/UX Profesional</li>
-                <li><i class="fa-solid fa-check"></i> Setup SEO Dasar</li>
-                <li><i class="fa-solid fa-check"></i> 3x Revisi</li>
-            </ul>
-            <button class="btn btn-order order-trigger" data-paket="Silver Business" data-harga="500.000">Pesan Silver</button>
-        </div>
+            <div class="card highlight">
+                <div class="card-icon" style="background: rgba(255,255,255,0.2); color: #fff;"><i class="fa-solid fa-star"></i></div>
+                <div class="price-title"><span>Gold</span> <span class="price-amount">2.5 Juta</span></div>
+                <p>Sistem dinamis dengan manajemen konten dan fitur interaktif.</p>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Halaman Tanpa Batas</li>
+                    <li><i class="fa-solid fa-check"></i> Fitur Blog / Katalog Produk</li>
+                    <li><i class="fa-solid fa-check"></i> Dashboard Admin Control</li>
+                    <li><i class="fa-solid fa-check"></i> 7x Revisi</li>
+                </ul>
+                <button class="btn-order-card order-trigger" style="background: #d31a8a; color: #fff;" data-paket="Gold Pro System" data-harga="2.500.000">Pesan Gold</button>
+            </div>
 
-        <div class="card">
-            <div class="price-title"><span>Gold</span> <span class="price-amount">2.5 Juta</span></div>
-            <p>Sistem dinamis dengan manajemen konten dan fitur interaktif.</p>
-            <ul>
-                <li><i class="fa-solid fa-check"></i> Halaman Tanpa Batas</li>
-                <li><i class="fa-solid fa-check"></i> Fitur Blog / Katalog Produk</li>
-                <li><i class="fa-solid fa-check"></i> Dashboard Admin Control</li>
-                <li><i class="fa-solid fa-check"></i> 7x Revisi</li>
-            </ul>
-            <button class="btn btn-order order-trigger" data-paket="Gold Pro System" data-harga="2.500.000">Pesan Gold</button>
-        </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
+                <div class="price-title"><span>Platinum</span> <span class="price-amount">5 Juta</span></div>
+                <p>Custom Web App Skala penuh sesuai request logika sistem Anda.</p>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Custom Frontend & Backend</li>
+                    <li><i class="fa-solid fa-check"></i> Database Integration Server</li>
+                    <li><i class="fa-solid fa-check"></i> Free Maintenance 6 Bulan</li>
+                    <li><i class="fa-solid fa-check"></i> Revisi Tanpa Batas</li>
+                </ul>
+                <button class="btn-order-card order-trigger" data-paket="Platinum Custom" data-harga="5.000.000">Pesan Platinum</button>
+            </div>
 
-        <div class="card" style="border-color: #38bdf8;">
-            <div class="price-title"><span>Platinum</span> <span class="price-amount">5 Juta</span></div>
-            <p>Custom Web App Skala penuh sesuai request logika sistem Anda.</p>
-            <ul>
-                <li><i class="fa-solid fa-check"></i> Custom Frontend & Backend</li>
-                <li><i class="fa-solid fa-check"></i> Database Integration Server</li>
-                <li><i class="fa-solid fa-check"></i> Free Maintenance 6 Bulan</li>
-                <li><i class="fa-solid fa-check"></i> Revisi Tanpa Batas</li>
-            </ul>
-            <button class="btn btn-order order-trigger" data-paket="Platinum Custom" data-harga="5.000.000">Pesan Platinum</button>
         </div>
 
         <div class="invoice-container" id="invoiceBox">
             <div class="inv-header">
                 <h3>E-INVOICE PEDIABOY</h3>
-                <p style="color: #94a3b8; font-size: 13px; margin-top: 5px;" id="invDate"></p>
+                <p style="color: #a09eb0; font-size: 13px; margin-top: 8px;" id="invDate"></p>
             </div>
             <div class="inv-details">
                 <div class="inv-row">
@@ -365,7 +518,7 @@
                 </div>
                 <div class="inv-row">
                     <span>Status:</span>
-                    <strong style="color: #fbbf24;">Menunggu Pembayaran</strong>
+                    <strong style="color: #f59e0b;">Menunggu Pembayaran</strong>
                 </div>
             </div>
             <div class="inv-total" id="invHarga">IDR 0</div>
@@ -374,19 +527,31 @@
                 <span class="pay-badge"><i class="fa-solid fa-building-columns"></i> Bank Transfer</span>
                 <span class="pay-badge"><i class="fa-solid fa-wallet"></i> E-Wallet</span>
             </div>
-            <button class="btn btn-confirm" id="btnConfirmPay">Konfirmasi Via WA <i class="fa-brands fa-whatsapp"></i></button>
+            <button class="btn-confirm" id="btnConfirmPay"><i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> Konfirmasi Pesanan</button>
         </div>
     </div>
 
     <div class="section fade-elem">
         <h2>Cara Memesan</h2>
         <div class="card">
-            <ul style="margin: 0; color: #cbd5e1; font-size: 15px; line-height: 1.8;">
-                <li><strong>1.</strong> Pilih paket website yang Anda inginkan.</li>
-                <li><strong>2.</strong> Sentuh tombol <strong>Pesan</strong>, lalu cek Invoice.</li>
-                <li><strong>3.</strong> Tekan <strong>Konfirmasi Via WA</strong> untuk terhubung.</li>
-                <li><strong>4.</strong> Lakukan pembayaran & tim PediaBoy akan memproses pesanan Anda.</li>
-            </ul>
+            <div class="step-list">
+                <div class="step-item">
+                    <h4>Pilih Paket</h4>
+                    <p>Tentukan paket website yang sesuai dengan kebutuhan dan skala bisnis Anda.</p>
+                </div>
+                <div class="step-item">
+                    <h4>Proses Order</h4>
+                    <p>Sentuh tombol Pesan pada paket yang dipilih, lalu periksa detail E-Invoice yang muncul.</p>
+                </div>
+                <div class="step-item">
+                    <h4>Konfirmasi WA</h4>
+                    <p>Tekan tombol konfirmasi untuk terhubung langsung dengan Admin PediaBoy via WhatsApp.</p>
+                </div>
+                <div class="step-item" style="margin-bottom: 0;">
+                    <h4>Pembayaran & Pengerjaan</h4>
+                    <p>Lakukan pembayaran sesuai instruksi admin, dan tim kami akan segera memproses website Anda.</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -394,40 +559,42 @@
         <h2>FAQ & Ketentuan</h2>
         
         <div class="faq-box">
-            <div class="faq-q">Berapa lama proses pembuatan?</div>
+            <div class="faq-q"><i class="fa-regular fa-circle-question"></i> Berapa lama proses pembuatan?</div>
             <div class="faq-a">Mulai dari 2 hari hingga 14 hari kerja, bergantung pada kompleksitas paket yang Anda pilih.</div>
         </div>
         <div class="faq-box">
-            <div class="faq-q">Apakah termasuk Domain & Hosting?</div>
+            <div class="faq-q"><i class="fa-regular fa-circle-question"></i> Apakah termasuk Domain & Hosting?</div>
             <div class="faq-a">Paket Gold dan Platinum sudah termasuk. Untuk Bronze dan Silver dikenakan biaya tambahan.</div>
         </div>
 
-        <h3 style="color: #f8fafc; font-size: 18px; margin: 25px 0 15px;">Syarat & Ketentuan</h3>
-        <ul class="snk-list">
-            <li>DP minimal 50% wajib dibayarkan sebelum pengerjaan dimulai.</li>
-            <li>Pembatalan sepihak dari klien membuat uang muka hangus.</li>
-            <li>PediaBoy berhak menolak website dengan konten ilegal/melanggar hukum.</li>
-            <li>Batas revisi disesuaikan dengan paket, penambahan revisi dikenakan biaya ekstra.</li>
-        </ul>
+        <div class="snk-container">
+            <h3>Syarat & Ketentuan</h3>
+            <ul class="snk-list">
+                <li>DP minimal 50% wajib dibayarkan sebelum pengerjaan dimulai.</li>
+                <li>Pembatalan sepihak dari klien membuat uang muka hangus.</li>
+                <li>PediaBoy berhak menolak website dengan konten ilegal/melanggar hukum.</li>
+                <li>Batas revisi disesuaikan dengan paket, penambahan revisi dikenakan biaya ekstra.</li>
+            </ul>
+        </div>
     </div>
 
-    <div class="section fade-elem" style="border-bottom: none;">
+    <div class="section fade-elem" style="padding-bottom: 20px;">
         <h2>Hubungi Kami</h2>
-        <div class="social-links">
-            <a href="https://wa.me/6282172222494" class="social-btn wa-bg" target="_blank">
-                <i class="fa-brands fa-whatsapp" style="font-size: 24px;"></i> WhatsApp Admin
+        <div class="social-grid">
+            <a href="https://wa.me/6282172222494" class="social-btn" target="_blank">
+                <i class="fa-brands fa-whatsapp" style="color: #25D366;"></i> WhatsApp Admin
             </a>
-            <a href="https://instagram.com/elthoriqqqq_" class="social-btn ig-bg" target="_blank">
-                <i class="fa-brands fa-instagram" style="font-size: 24px;"></i> @elthoriqqqq_
+            <a href="https://instagram.com/elthoriqqqq_" class="social-btn" target="_blank">
+                <i class="fa-brands fa-instagram" style="color: #E1306C;"></i> @elthoriqqqq_
             </a>
-            <a href="https://pediaboy.my.id" class="social-btn web-bg" target="_blank">
-                <i class="fa-solid fa-globe" style="font-size: 20px;"></i> pediaboy.my.id
+            <a href="https://pediaboy.my.id" class="social-btn" target="_blank">
+                <i class="fa-solid fa-globe" style="color: #d31a8a;"></i> pediaboy.my.id
             </a>
         </div>
     </div>
 
     <div class="footer">
-        &copy; 2026 PediaBoy Web Solutions. All Rights Reserved.
+        &copy; 2026 PediaBoy Web Solutions. Dikembangkan oleh PediaBoy.
     </div>
 </div>
 
@@ -436,15 +603,13 @@
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.15
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                } else {
-                    entry.target.classList.remove('visible');
                 }
             });
         }, observerOptions);
@@ -478,7 +643,7 @@
                 
                 setTimeout(() => {
                     invoiceBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
+                }, 150);
             });
         });
 
